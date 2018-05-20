@@ -70,7 +70,7 @@ ProfileStack.navigationOptions = {
 }
 
 export default createBottomTabNavigator({
+  HomeStack,
   BillStack,
-  ProfileStack,
-  HomeStack
+  ProfileStack
 })

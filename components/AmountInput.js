@@ -1,43 +1,57 @@
-import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { Input, Text, Icon } from 'react-native-elements'
-import { darkGray, darkBlue, mediumBlue, lightGray, white } from './Colors'
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import { Input, Text, Icon } from "react-native-elements";
+import { darkGray, darkBlue, mediumBlue, lightGray, white } from "./Colors";
 
 export default class AmountInput extends React.Component {
-  render () {
-    let kind = this.props.kind
-    if (kind === 'Airtime') {
+  _onPress = () => {
+    this.props.onPressData();
+  };
+
+  render() {
+    let kind = this.props.kind;
+    if (kind === "Airtime") {
       return (
         <View style={styles.container}>
-
-          <Icon name="currency-ngn" type="material-community" color={mediumBlue} containerStyle={{ marginRight: 10 }} />
+          <Icon
+            name="currency-ngn"
+            type="material-community"
+            color={mediumBlue}
+            containerStyle={{ marginRight: 10 }}
+          />
           <Input
             maxLength={4}
             keyboardType="numeric"
             underlineColorAndroid="transparent"
-            placeholder={'Amount of Airtime'}
+            placeholder={"Amount of Airtime"}
           />
         </View>
-      )
+      );
     } else {
       return (
         <View style={styles.container}>
-
-          <Icon name="currency-ngn" type="material-community" color={mediumBlue} containerStyle={{ marginRight: 10 }} />
+          <Icon
+            name="currency-ngn"
+            type="material-community"
+            color={mediumBlue}
+            containerStyle={{ marginRight: 10 }}
+          />
           <Input
             maxLength={4}
             keyboardType="numeric"
             underlineColorAndroid="transparent"
-            placeholder={'Amount of Data'}
-            rightIcon={<Icon
-              name="list"
-              color={mediumBlue}
-              containerStyle={{marginRight: 10}}
-              onPress={() => console.log('pressed icon')}
-            />}
+            placeholder={"Amount of Data"}
+            rightIcon={
+              <Icon
+                name="list"
+                color={mediumBlue}
+                containerStyle={{ marginRight: 10 }}
+                onPress={this._onPress}
+              />
+            }
           />
         </View>
-      )
+      );
     }
   }
 }
@@ -45,9 +59,9 @@ export default class AmountInput extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     // padding: 10
     margin: 5
   },
@@ -64,4 +78,4 @@ const styles = StyleSheet.create({
     // paddingTop: 10,
     // paddingBottom: 10
   }
-})
+});

@@ -1,15 +1,30 @@
-import React from 'react';
-import { Notifications } from 'expo';
-import { createSwitchNavigator } from 'react-navigation';
+import React from "react";
+import { Notifications } from "expo";
+import { createSwitchNavigator, createStackNavigator } from "react-navigation";
 
-import MainTabNavigator from './MainTabNavigator';
-import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
+import AuthLoadingScreen from "../screens/AuthLoadingScreen";
+import LoginScreen from "../screens/LoginScreen";
+import MainTabNavigator from "./MainTabNavigator";
+import registerForPushNotificationsAsync from "../api/registerForPushNotificationsAsync";
+import SignUpScreen from "../screens/SignUpScreen";
 
-const AppNavigator = createSwitchNavigator({
-  // You could add another route here for authentication.
-  // Read more at https://reactnavigation.org/docs/en/auth-flow.html
-  Main: MainTabNavigator,
+const AuthStack = createStackNavigator({
+  Login: LoginScreen,
+  SignUp: SignUpScreen
 });
+
+const AppNavigator = createSwitchNavigator(
+  {
+    // You could add another route here for authentication.
+    // Read more at https://reactnavigation.org/docs/en/auth-flow.html
+    AuthLoading: AuthLoadingScreen,
+    Auth: AuthStack,
+    Main: MainTabNavigator
+  },
+  {
+    initialRouteName: "AuthLoading"
+  }
+);
 
 export default class RootNavigation extends React.Component {
   componentDidMount() {
@@ -29,13 +44,14 @@ export default class RootNavigation extends React.Component {
     // You can comment the following line out if you want to stop receiving
     // a notification every time you open the app. Check out the source
     // for this function in api/registerForPushNotificationsAsync.js
-      //registerForPushNotificationsAsync();
-
+    //registerForPushNotificationsAsync();
     // Watch for incoming notifications
-      //this._notificationSubscription = Notifications.addListener(this._handleNotification);
+    //this._notificationSubscription = Notifications.addListener(this._handleNotification);
   }
 
   _handleNotification = ({ origin, data }) => {
-    console.log(`Push notification ${origin} with data: ${JSON.stringify(data)}`);
+    console.log(
+      `Push notification ${origin} with data: ${JSON.stringify(data)}`
+    );
   };
 }

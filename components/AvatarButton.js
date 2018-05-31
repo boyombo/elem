@@ -1,15 +1,13 @@
-import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { Text, Avatar } from 'react-native-elements'
-import { darkBlue, mediumBlue, lightGray } from './Colors'
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import { Text, Avatar } from "react-native-elements";
+import { darkBlue, mediumBlue, lightGray } from "../constants/Colors";
 
 export default class AvatarButton extends React.Component {
-  render () {
-    let icon = this.props.icon || 'person'
-    // let iconColor = this.props.iconColor || '#004e98'
-    let iconColor = this.props.iconColor || mediumBlue
-    let bgColor = this.props.bgColor || lightGray
-    // let bgColor = this.props.bgColor || '#ebebeb'
+  render() {
+    let icon = this.props.icon || "person";
+    let iconColor = this.props.iconColor || mediumBlue;
+    let bgColor = this.props.bgColor || lightGray;
     return (
       <View style={styles.container}>
         <Avatar
@@ -21,14 +19,14 @@ export default class AvatarButton extends React.Component {
         />
         <Text>{this.props.name}</Text>
       </View>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
-    alignItems: 'center',
+    flexDirection: "column",
+    alignItems: "center",
     marginLeft: 5
   },
   avatar: {
@@ -40,4 +38,4 @@ const styles = StyleSheet.create({
     backgroundColor: mediumBlue
     // backgroundColor: '#004e98'
   }
-})
+});

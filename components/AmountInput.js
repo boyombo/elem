@@ -1,11 +1,25 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { Input, Text, Icon } from "react-native-elements";
+import { Input, Button, Text, Icon } from "react-native-elements";
 import { darkGray, darkBlue, mediumBlue, lightGray, white } from "./Colors";
 
 export default class AmountInput extends React.Component {
-  _onPress = () => {
+  _showData = () => {
     this.props.onPressData();
+  };
+
+  _formatDataPlan = () => {
+    const { dataPlan } = this.props;
+    if (!dataPlan) {
+      return "Select Data Plan";
+    } else {
+      return (
+        dataPlan.product_id.split("-").reverse()[0] +
+        "(N " +
+        dataPlan.denomination +
+        ")"
+      );
+    }
   };
 
   render() {
@@ -36,19 +50,13 @@ export default class AmountInput extends React.Component {
             color={mediumBlue}
             containerStyle={{ marginRight: 10 }}
           />
-          <Input
-            maxLength={4}
-            keyboardType="numeric"
-            underlineColorAndroid="transparent"
-            placeholder={"Amount of Data"}
-            rightIcon={
-              <Icon
-                name="list"
-                color={mediumBlue}
-                containerStyle={{ marginRight: 10 }}
-                onPress={this._onPress}
-              />
-            }
+          <Button
+            clear
+            title={this._formatDataPlan()}
+            titleStyle={{ color: mediumBlue }}
+            icon={{ name: "list", color: mediumBlue }}
+            iconRight={true}
+            onPress={this._showData}
           />
         </View>
       );
